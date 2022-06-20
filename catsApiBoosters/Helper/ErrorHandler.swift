@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+struct ErrorHandler {
+	
+	enum NetworkingError: Error {
+		case badRequestUrl
+		case badServerResponse
+		case unsupportedURL
+		
+	}
+}
