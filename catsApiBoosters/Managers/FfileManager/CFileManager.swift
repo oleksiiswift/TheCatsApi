@@ -45,16 +45,18 @@ class CFileManager {
 		}
 	}
 	 
-	public func moveFileCacheDirrectory(from source: URL, with name: String, file type: FileType) {
+	public func moveFileCacheDirrectory(from source: URL, with name: String, file type: FileType) -> URL? {
 		
-		guard let cacheDirectory = self.getDirrectoryURL(.cache) else { return }
+		guard let cacheDirectory = self.getDirrectoryURL(.cache) else { return nil}
 		
 		let destinationURL = URL(fileURLWithPath: cacheDirectory.path).appendingPathComponent(name).appendingPathExtension(type.rawValue)
 		do {
 			try fileManager.moveItem(at: source, to: destinationURL)
+			return destinationURL
 		} catch {
 			debugPrint(error.localizedDescription)
 		}
+		return nil
 	}
 		
 	private func getDirrectoryURL(_ directory: AppFilesDirectories) -> URL? {

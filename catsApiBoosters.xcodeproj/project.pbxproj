@@ -21,6 +21,7 @@
 		97F83A18286085360049F1FE /* DataModelLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F83A17286085360049F1FE /* DataModelLoader.swift */; };
 		97F83A1A286089190049F1FE /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F83A19286089190049F1FE /* AlertManager.swift */; };
 		97F83A1E2860972C0049F1FE /* CFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F83A1D2860972C0049F1FE /* CFileManager.swift */; };
+		97F83A232860CB780049F1FE /* ImageDonwloadActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F83A222860CB780049F1FE /* ImageDonwloadActor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		97F83A17286085360049F1FE /* DataModelLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModelLoader.swift; sourceTree = "<group>"; };
 		97F83A19286089190049F1FE /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		97F83A1D2860972C0049F1FE /* CFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFileManager.swift; sourceTree = "<group>"; };
+		97F83A222860CB780049F1FE /* ImageDonwloadActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDonwloadActor.swift; sourceTree = "<group>"; };
 		F642C88722A3954B611484A2 /* Pods-catsApiBoosters.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-catsApiBoosters.release.xcconfig"; path = "Target Support Files/Pods-catsApiBoosters/Pods-catsApiBoosters.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -114,6 +116,7 @@
 				97F83A15286075090049F1FE /* PersistentManager */,
 				97F83A1B2860911C0049F1FE /* AlertManager */,
 				97F83A212860C9D80049F1FE /* FfileManager */,
+				97F83A242860CB7C0049F1FE /* ImageDownloader */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -157,6 +160,14 @@
 				97F83A1D2860972C0049F1FE /* CFileManager.swift */,
 			);
 			path = FfileManager;
+			sourceTree = "<group>";
+		};
+		97F83A242860CB7C0049F1FE /* ImageDownloader */ = {
+			isa = PBXGroup;
+			children = (
+				97F83A222860CB780049F1FE /* ImageDonwloadActor.swift */,
+			);
+			path = ImageDownloader;
 			sourceTree = "<group>";
 		};
 		9976E70FBF1476CF19623166 /* Frameworks */ = {
@@ -296,6 +307,7 @@
 				97F839F128606B160049F1FE /* AppDelegate.swift in Sources */,
 				97F83A11286074E30049F1FE /* ErrorHandler.swift in Sources */,
 				97F83A18286085360049F1FE /* DataModelLoader.swift in Sources */,
+				97F83A232860CB780049F1FE /* ImageDonwloadActor.swift in Sources */,
 				97F83A1E2860972C0049F1FE /* CFileManager.swift in Sources */,
 				97F83A13286074FA0049F1FE /* PersistentManager.swift in Sources */,
 				97F839F328606B160049F1FE /* SceneDelegate.swift in Sources */,
