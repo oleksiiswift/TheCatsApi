@@ -18,19 +18,22 @@ struct Constants {
 	struct Identifiers {
 		
 		struct Stroryboards {
-			
+			static let main = "Main"
+			static let loader = "Loader"
 		}
 		
 		struct ViewControllers {
-			
+			static let categoriesList = "CategoriesListViewController"
+			static let categoriesFacts = "CategoriesFactsViewController"
+			static let loader = "LoaderViewController"
 		}
 		
 		struct Cells {
-			
+			static let category = "CategoryTableViewCell"
 		}
 		
 		struct Xibs {
-			
+			static let category = "CategoryTableViewCell"
 		}
 	}
 	
@@ -38,5 +41,10 @@ struct Constants {
 		
 		static let free = "free"
 		static let paid = "paid"
+	}
+	
+	struct Notification {
+		
+		static let updateDataBase = "com.cats.databaseDidUpdate"
 	}
 }
