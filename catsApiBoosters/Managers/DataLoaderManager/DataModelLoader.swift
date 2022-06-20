@@ -40,11 +40,4 @@ class DataModelLoader {
 	}
 }
 
-extension ErrorHandler {
-	
-	
-	public static func handleError(of errorForKey: Error) {
-		
-		debugPrint(errorForKey)
-	}
-}
+

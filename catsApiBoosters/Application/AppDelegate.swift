@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		
 		self.prepareDateBase()
 		self.initDataLoader()
-		
+	
 		return true
 	}
 
@@ -35,6 +35,8 @@ extension AppDelegate {
 	private func prepareDateBase() {
 		
 		PersistentManager.instance.removeAllObjects()
+		CFileManager().clearDirectory(of: .cache)
+		CFileManager().clearDirectory(of: .temp)
 	}
 	
 	private func initDataLoader() {
