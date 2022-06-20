@@ -1,5 +1,5 @@
 //
-//  PersistantManager.swift
+//  PersistentManager.swift
 //  catsApiBoosters
 //
 //  Created by alexey sorochan on 20.06.2022.
@@ -7,11 +7,11 @@
 
 import RealmSwift
 
-class PersistantManager {
+class PersistentManager {
 
-	static var instance: PersistantManager {
+	static var instance: PersistentManager {
 		struct Static {
-			static let instance: PersistantManager = PersistantManager()
+			static let instance: PersistentManager = PersistentManager()
 		}
 		return Static.instance
 	}
@@ -48,6 +48,7 @@ class PersistantManager {
 			let realm = try Realm()
 			try realm.write {
 				realm.deleteAll()
+				debugPrint("all data removed")
 			}
 		} catch {
 			debugPrint(error.localizedDescription)
