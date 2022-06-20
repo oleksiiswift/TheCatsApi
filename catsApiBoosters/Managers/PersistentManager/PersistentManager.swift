@@ -30,7 +30,7 @@ class PersistentManager {
 		}
 	}
 	
-	public func getObjects<T:Object>() -> [T] {
+	public func getObjects<T:Object>(with type: T.Type) -> [T] {
 		
 		do {
 			let realm = try Realm()
