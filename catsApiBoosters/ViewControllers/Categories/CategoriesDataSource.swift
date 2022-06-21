@@ -12,7 +12,8 @@ import UIKit
 	
 	public var categoriesViewModel: CategoriesViewModel
 	public var handleSelectCategory: (([AnimalContentModel]) -> Void) = { _ in }
-
+	public var handlePaidSelectCatrgory: (([AnimalContentModel]) -> Void) = { _ in }
+	
 	init(categoryViewModel: CategoriesViewModel) {
 		self.categoriesViewModel = categoryViewModel
 	}
@@ -50,5 +51,27 @@ extension CategoriesDataSource: UITableViewDelegate, UITableViewDataSource {
 		let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Identifiers.Cells.category, for: indexPath) as! CategoryTableViewCell
 		self.configure(cell: cell, at: indexPath)
 		return cell
+	}
+	
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		return UITableView.automaticDimension
+	}
+	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		
+		let model = categoriesViewModel.getCategory(at: indexPath)
+
+		if model.content.isEmpty {
+			AlertManager.showAlert(of: .emptyContent, completionHandler: nil)
+		} else {
+			switch model.status {
+				case .free:
+					self.handleSelectCategory(Array(model.content))
+				case .paid:
+					self.handlePaidSelectCatrgory(Array(model.content))
+				case .unknown:
+					return
+			}
+		}
 	}
 }

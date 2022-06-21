@@ -15,6 +15,10 @@ struct Constants {
 //		static let apiLink = "https://drive.google.com/uc?export=download&id=12L7OflAsIxPOF47ssRdKyjXoWbUrq4V5"
 	}
 	
+	struct Advertisement {
+		static let advertisementDuration: TimeInterval = 10
+	}
+	
 	struct Identifiers {
 		
 		struct Stroryboards {
@@ -26,14 +30,17 @@ struct Constants {
 			static let categoriesList = "CategoriesListViewController"
 			static let categoriesFacts = "CategoriesFactsViewController"
 			static let loader = "LoaderViewController"
+			static let advertisement = "AdvertisementViewController"
 		}
 		
 		struct Cells {
 			static let category = "CategoryTableViewCell"
+			static let fact = "CategoryFactCollectionViewCell"
 		}
 		
 		struct Xibs {
 			static let category = "CategoryTableViewCell"
+			static let fact = "CategoryFactCollectionViewCell"
 		}
 	}
 	
@@ -46,5 +53,9 @@ struct Constants {
 	struct Notification {
 		
 		static let updateDataBase = "com.cats.databaseDidUpdate"
+	}
+	
+	struct DefaultValues {
+		static let zerotime = "00:00"
 	}
 }

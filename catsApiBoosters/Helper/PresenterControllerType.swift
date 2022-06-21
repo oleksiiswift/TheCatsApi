@@ -10,10 +10,13 @@ import UIKit
 enum PresentedControllerType {
 	
 	case loader
-
+	case advertisement
+	
 	var storyboardName: String {
 		switch self {
 			case .loader:
+				return Constants.Identifiers.Stroryboards.loader
+			case .advertisement:
 				return Constants.Identifiers.Stroryboards.loader
 		}
 	}
@@ -22,14 +25,13 @@ enum PresentedControllerType {
 		switch self {
 			case .loader:
 				return Constants.Identifiers.ViewControllers.loader
+			case .advertisement:
+				return Constants.Identifiers.ViewControllers.advertisement
 		}
 	}
 		
 	var presentController: UIViewController {
-		switch self {
-			case .loader:
-				return getPresentedViewController(type: .loader)
-		}
+				return getPresentedViewController(type: self)
 	}
 	
 	private func getPresentedViewController(type: PresentedControllerType) -> UIViewController {
@@ -38,6 +40,8 @@ enum PresentedControllerType {
 		switch self {
 			case .loader:
 				return storyboard.instantiateViewController(withIdentifier: type.viewControllerIdentifier) as! LoaderViewController
+			case .advertisement:
+				return storyboard.instantiateViewController(withIdentifier: type.viewControllerIdentifier) as! AdvertisementViewController
 		}
 	}
 }
