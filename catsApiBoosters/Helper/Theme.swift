@@ -48,5 +48,9 @@ struct Theme {
 	static var clearColor: UIColor {
 		return .clear
 	}
+	
+	static var loadingActivityIndicatorColor: UIColor {
+		return .black.withAlphaComponent(0.8)
+	}
 }
 

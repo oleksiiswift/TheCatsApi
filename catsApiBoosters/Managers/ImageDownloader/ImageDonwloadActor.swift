@@ -72,6 +72,15 @@ actor ImageDownloadActor {
 	
 	private func downloadImage(from url: URL, cached id: String) async throws -> URL? {
 		
+		let (isExist, cacheURL) = fileManager.isCacheFileExist(with: id)
+		
+		if isExist {
+			if let cacheURL = cacheURL {
+				debugPrint("cache url is exist: \(cacheURL)")
+				return cacheURL
+			}
+		}
+		
 		let (sourceURL, responce) = try await URLSession.shared.download(from: url)
 		
 		guard let httpResponse = responce as? HTTPURLResponse, (200..<400).contains(httpResponse.statusCode) else { throw ErrorHandler.NetworkingError.badServerResponse }

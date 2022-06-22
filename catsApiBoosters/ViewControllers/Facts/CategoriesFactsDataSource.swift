@@ -12,6 +12,9 @@ import UIKit
 	
 	public var contentViewModel: CategoriesFactsViewModel
 	
+	public var handleForward: ((_ cell: CategoryFactCollectionViewCell) -> Void) = { _ in}
+	public var handleBackward: ((_ cell: CategoryFactCollectionViewCell) -> Void) = { _ in}
+	
 	init(contentViewModel: CategoriesFactsViewModel) {
 		self.contentViewModel = contentViewModel
 	}
@@ -22,8 +25,41 @@ extension CategoriesFactsDataSource {
 	private func configure(cell: CategoryFactCollectionViewCell, at indexPath: IndexPath) {
 		
 		let model = contentViewModel.getCategory(at: indexPath)
+		let imageID = model.imageChacheID
 		
-		cell.configureCell(with: model)
+		if let stringURL = model.imageURL {
+			Task {
+				let image = try? await ImageDownloadActor().getImage(from: URL(string: stringURL), with: imageID)
+				await MainActor.run {
+					cell.configureCell(with: image)
+				}
+			}
+		}
+		
+		var position: ElementhPosition {
+			switch indexPath.row {
+				case 0:
+					return .first
+				case contentViewModel.numbersOrRowsAtSection() - 1:
+					return .last
+				default:
+					return .regular
+			}
+		}
+		
+		cell.configureCell(with: model, position: position)
+		cell.delegate = self
+	}
+}
+
+extension CategoriesFactsDataSource: CategoryFactCellDelegate {
+	
+	func didTapScrollForward(_ cell: CategoryFactCollectionViewCell) {
+		self.handleForward(cell)
+	}
+	
+	func didTapScrollBackward(_ cell: CategoryFactCollectionViewCell) {
+		self.handleBackward(cell)
 	}
 }
 

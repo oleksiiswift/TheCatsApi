@@ -90,7 +90,7 @@ extension CategoryTableViewCell {
 		subtitleTextLabel.textColor = Theme.subTitleTextColor
 		subtitleTextLabel.numberOfLines = 0
 		
-		activityIndicatorView.color = .black.withAlphaComponent(0.8)
+		activityIndicatorView.color = Theme.loadingActivityIndicatorColor
 		let activityIndicatorSize = CGSize(width: 20, height: 20)
 		let activityIndicatorPoint = CGPoint(x: (imageContainerView.frame.width / 2) - activityIndicatorSize.width / 2, y: (imageContainerView.frame.height / 2) - activityIndicatorSize.width / 2)
 		activityIndicatorView.frame = CGRect(origin: activityIndicatorPoint, size: activityIndicatorSize)

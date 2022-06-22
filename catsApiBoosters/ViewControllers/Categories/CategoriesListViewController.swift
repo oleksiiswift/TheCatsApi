@@ -64,7 +64,7 @@ extension CategoriesListViewController {
 		let storyboard = UIStoryboard(name: Constants.Identifiers.Stroryboards.main, bundle: nil)
 		let viewConroller = storyboard.instantiateViewController(withIdentifier: Constants.Identifiers.ViewControllers.categoriesFacts) as! CategoriesFactsViewController
 		viewConroller.content = content
-		
+		viewConroller.navigationTitle = "helo"
 		self.navigationController?.pushViewController(viewConroller, animated: true)
 	}
 }
