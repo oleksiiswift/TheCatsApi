@@ -16,6 +16,7 @@ struct Images {
 		static let arrowBackward = UIImage(systemName: "arrow.left.circle")
 		static let arrowForward = UIImage(systemName: "arrow.forward.circle")
 		static let camera = UIImage(systemName: "camera.fill")
+		static let share = UIImage(systemName: "square.and.arrow.up")
 	}
 }
 

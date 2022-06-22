@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum AppFilesDirectories: String {
 	case cache = "ImageCacheDirrectory"
@@ -58,6 +59,21 @@ class CFileManager {
 			return destinationURL
 		} catch {
 			debugPrint(error.localizedDescription)
+		}
+		return nil
+	}
+	
+	public func getImageFromCache(with id: String) -> UIImage? {
+		
+		let (isExist, cacheURL) = self.isCacheFileExist(with: id)
+		
+		if isExist, let url = cacheURL {
+			do {
+				let data = try Data(contentsOf: url)
+				return UIImage(data: data)
+			} catch {
+				debugPrint(error.localizedDescription)
+			}
 		}
 		return nil
 	}
