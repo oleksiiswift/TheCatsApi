@@ -15,24 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		self.prepareDateBase()
 		self.initDataLoader()
 		
-//		DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
-//
-//			let categories = PersistentManager.instance.getObjects(with: AnimalCategoryModel.self)
-//
-//			let img = categories.flatMap({$0.content}).compactMap({$0.imageURL})
-//
-//			for str in img {
-//				if let url = URL(string: str) {
-//					debugPrint(url)
-//
-//					Task {
-//						let image = try await ImageDownloadActor().getImage(from: url, with: UUID().uuidString)
-//						debugPrint(image)
-//					}
-//				}
-//			}
-//		}
-	
 		return true
 	}
 
@@ -46,7 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	}
 }
-
 
 extension AppDelegate {
 	
@@ -65,6 +46,7 @@ extension AppDelegate {
 			if !animalsData.isEmpty {
 				PersistentManager.instance.saveObjects(objects: animalsData) { saved in
 					debugPrint("saved completed")
+					NotificationCenter.default.post(name: .dateBaseDidUpdate, object: nil)
 				}
 			}
 		}

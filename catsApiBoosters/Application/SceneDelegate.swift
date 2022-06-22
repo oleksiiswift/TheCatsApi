@@ -7,13 +7,18 @@
 
 import UIKit
 
+var currentScene: UIScene?
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 	var window: UIWindow?
-
+	var presenterWindow: UIWindow?
 
 	func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-		guard let _ = (scene as? UIWindowScene) else { return }
+		
+		guard let scene = (scene as? UIWindowScene) else { return }
+		currentScene = scene
+		self.handleStartupRouting()
 	}
 
 	func sceneDidDisconnect(_ scene: UIScene) {}
@@ -27,3 +32,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 	func sceneDidEnterBackground(_ scene: UIScene) {}
 }
 
+extension SceneDelegate {
+	
+	private func handleStartupRouting() {
+		
+		UIPresenter.showViewController(of: .loader)
+	}
+}
