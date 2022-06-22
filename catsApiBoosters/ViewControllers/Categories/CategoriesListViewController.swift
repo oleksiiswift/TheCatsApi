@@ -111,7 +111,7 @@ extension CategoriesListViewController {
 	
 	private func setupViewModel() {
 		
-		let categories = self.persistantManager.getObjects(with: AnimalCategoryModel.self)
+		let categories = self.persistantManager.getObjects(with: AnimalCategoryModel.self).sorted(by: {$0.title ?? "" < $1.title ?? ""})
 		self.categoriesViewModel = CategoriesViewModel(categories: categories)
 		self.categoriesDataSource = CategoriesDataSource(categoryViewModel: self.categoriesViewModel)
 		self.handleSelectContent()
