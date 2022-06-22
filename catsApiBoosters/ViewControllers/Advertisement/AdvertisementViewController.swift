@@ -11,7 +11,7 @@ class AdvertisementViewController: UIViewController {
 	
 	@IBOutlet weak var cancelAdvertisementButton: UIButton!
 	
-	var advertisementTimer = Timer()
+	var advertisementTimer: Timer?
 	var advertisementDuration: TimeInterval = Constants.Advertisement.advertisementDuration
 	var stopTime: Date?
 	var advertisementTextLabel = UILabel()
@@ -27,9 +27,21 @@ class AdvertisementViewController: UIViewController {
 		drawTimeLeftShape()
 		advertisementLabelSetup()
 		progressSetup()
+	}
+	
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		
 		timerSetup()
 	}
+	
+	override func viewDidDisappear(_ animated: Bool) {
+		super.viewDidDisappear(animated)
 		
+		advertisementTimer?.invalidate()
+		advertisementTimer = nil
+	}
+	
 	@IBAction func didTapCancelAdvertisementActionButton(_ sender: Any) {
 		AdvertisementMediator.instance.advertisementTryCancel()
 	}
@@ -84,8 +96,11 @@ extension AdvertisementViewController {
 	
 	private func timerDidStop() {
 		updateAdvertisementDurationLabel(with: Constants.DefaultValues.zerotime)
-		advertisementTimer.invalidate()
-		AdvertisementMediator.instance.advertisementDidShow()
+		advertisementTimer!.invalidate()
+		advertisementTimer = nil
+		DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+			AdvertisementMediator.instance.advertisementDidShow()
+		}
 	}
 }
 
