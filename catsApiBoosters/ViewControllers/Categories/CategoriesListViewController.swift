@@ -16,7 +16,6 @@ class CategoriesListViewController: UIViewController {
 	private var categoriesDataSource: CategoriesDataSource!
 	
 	private var persistantManager = PersistentManager.instance
-	
 	private var selectedContent: [AnimalContentModel]?
 	
     override func viewDidLoad() {
@@ -65,6 +64,7 @@ extension CategoriesListViewController {
 		let storyboard = UIStoryboard(name: Constants.Identifiers.Stroryboards.main, bundle: nil)
 		let viewConroller = storyboard.instantiateViewController(withIdentifier: Constants.Identifiers.ViewControllers.categoriesFacts) as! CategoriesFactsViewController
 		viewConroller.content = content
+		
 		self.navigationController?.pushViewController(viewConroller, animated: true)
 	}
 }
@@ -118,6 +118,7 @@ extension CategoriesListViewController {
 	private func navigationSetup() {
 		
 		self.navigationController?.navigationBar.prefersLargeTitles = true
+		self.navigationItem.largeTitleDisplayMode = .always
 		self.navigationItem.title = "Categories"
 	}
 	
@@ -136,3 +137,4 @@ extension CategoriesListViewController {
 		AdvertisementMediator.instance.setListener(listener: self)
 	}
 }
+
