@@ -28,6 +28,18 @@ class Utils {
 			.compactMap {$0 as? UIWindowScene}
 			.first?.windows.filter {$0.isKeyWindow}.first
 	}
+	
+	static let mainScreen: UIScreen = .main
+	
+	static let screenBounds: CGRect = mainScreen.bounds
+	
+	static let screenHeight: CGFloat = screenBounds.height
+	
+	static let screenWidth: CGFloat = screenBounds.width
+	
+	static public var bottomSafeAreaHeight: CGFloat {
+		return windowScene.first?.keyWindow?.safeAreaInsets.bottom ?? 0
+	}
 }
 
 extension Utils {

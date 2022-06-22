@@ -13,5 +13,8 @@ struct Images {
 	struct Buttons {
 		static let close = UIImage(systemName: "xmark.circle")
 		static let locker = UIImage(systemName: "lock.fill")
+		static let arrowBackward = UIImage(systemName: "arrow.left.circle")
+		static let arrowForward = UIImage(systemName: "arrow.forward.circle")
 	}
 }
+

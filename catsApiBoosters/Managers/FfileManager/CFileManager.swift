@@ -51,12 +51,51 @@ class CFileManager {
 		
 		let destinationURL = URL(fileURLWithPath: cacheDirectory.path).appendingPathComponent(name).appendingPathExtension(type.rawValue)
 		do {
+			if fileExists(atPath: destinationURL) {
+				return destinationURL
+			}
 			try fileManager.moveItem(at: source, to: destinationURL)
 			return destinationURL
 		} catch {
 			debugPrint(error.localizedDescription)
 		}
 		return nil
+	}
+	
+	public func isCacheFileExist(with id: String) -> (Bool, URL?) {
+		
+		guard let cacheDirectory = self.getDirrectoryURL(.cache) else { return (false, nil)}
+		let destinationURL = URL(fileURLWithPath: cacheDirectory.path).appendingPathComponent(id).appendingPathExtension(FileType.jpeg.rawValue)
+		
+		if fileExists(atPath: destinationURL) {
+			return (true, destinationURL)
+		} else {
+			return (false, nil)
+		}
+	}
+	
+	public func removeIdsFromCache(ids: [String]) {
+		
+		ids.forEach {
+			self.clearCacheFiles(with: $0)
+		}
+	}
+	
+	public func clearCacheFiles(with id: String) {
+		
+		let (isExist, url) = self.isCacheFileExist(with: id)
+		if isExist, let url = url {
+			do {
+				try fileManager.removeItem(atPath: url.path)
+				debugPrint("file removed")
+			} catch {
+				debugPrint(error.localizedDescription)
+			}
+		}
+	}
+	
+	private func fileExists(atPath: URL) -> Bool {
+		return fileManager.fileExists(atPath: atPath.path)
 	}
 		
 	private func getDirrectoryURL(_ directory: AppFilesDirectories) -> URL? {
