@@ -16,7 +16,7 @@ struct Constants {
 	}
 	
 	struct Advertisement {
-		static let advertisementDuration: TimeInterval = 10
+		static let advertisementDuration: TimeInterval = 5
 	}
 	
 	struct Identifiers {

@@ -34,7 +34,7 @@ class DataModelLoader {
 			let animals = try decoder.decode([AnimalCategoryModel].self, from: data)
 			return animals
 		} catch {
-			ErrorHandler.handleError(of: error)
+			ErrorHandler.handleError(of: error, description: error.localizedDescription)
 		}
 		return []
 	}

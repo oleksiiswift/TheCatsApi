@@ -13,6 +13,12 @@ enum AlertType {
 	case showAdd
 	case emptyContent
 	case cancelAdd
+	case decodingError
+	case badRequestUrl
+	case badServerResponse
+	case unsupportedURL
+	case contentIsEmpty
+	case premiumIsNotAvailible
 	
 	var alertDescription: AlertDescription {
 		switch self {
@@ -31,6 +37,36 @@ enum AlertType {
 							 description: "by skipping add, category will not recieve",
 							 action: Buttons.getButtonTitle(of: .skip),
 							 cancel: Buttons.getButtonTitle(of: .cancel))
+			case .decodingError:
+				return .init(title: "Decoding Error",
+							 description: "",
+							 action: Buttons.getButtonTitle(of: .ok),
+							 cancel: "")
+			case .badRequestUrl:
+				return .init(title: "Error!",
+							 description: "Bad Bad Request Url",
+							 action: Buttons.getButtonTitle(of: .ok),
+							 cancel: "")
+			case .badServerResponse:
+				return .init(title: "Error!",
+							 description: "Bad Server Error",
+							 action: Buttons.getButtonTitle(of: .ok),
+							 cancel: "")
+			case .unsupportedURL:
+				return .init(title: "Error!",
+							 description: "Unsupported URL",
+							 action: Buttons.getButtonTitle(of: .ok),
+							 cancel: "")
+			case .contentIsEmpty:
+				return .init(title: "Error!",
+							 description: "Content Is Empty",
+							 action: Buttons.getButtonTitle(of: .ok),
+							 cancel: "")
+			case .premiumIsNotAvailible:
+				return .init(title: "Warning",
+							 description: "Life time premium is not availible",
+							 action: Buttons.getButtonTitle(of: .ok),
+							 cancel: "")
 		}
 	}
 	
@@ -42,7 +78,11 @@ enum AlertType {
 		switch self {
 			case .showAdd, .cancelAdd:
 				return true
-			case .emptyContent:
+			case .emptyContent, .decodingError:
+				return false
+			case .badRequestUrl, .badServerResponse, .unsupportedURL:
+				return false
+			case .contentIsEmpty, .premiumIsNotAvailible:
 				return false
 		}
 	}
@@ -50,14 +90,16 @@ enum AlertType {
 
 class AlertManager {
 	
-	static public func showAlert(of alertType: AlertType, completionHandler: (() -> Void)? = nil) {
+	static public func showAlert(of alertType: AlertType, optionalDescription: String = "", completionHandler: (() -> Void)? = nil) {
 		
-		let description = alertType.alertDescription
-		let action = UIAlertAction(title: description.action, style: .default) { _ in
+		let alertDescription = alertType.alertDescription
+		let action = UIAlertAction(title: alertDescription.action, style: .default) { _ in
 			completionHandler?()
 		}
 		
-		self.presentDefaultAlert(title: description.title, message: description.description, actions: [action], style: alertType.style, withCancel: alertType.withCancel)
+		let finalDescription = alertDescription.description.isEmpty ? optionalDescription.isEmpty ? "" : optionalDescription : alertDescription.description
+		
+		self.presentDefaultAlert(title: alertDescription.title, message: finalDescription, actions: [action], style: alertType.style, withCancel: alertType.withCancel)
 	}
 	
 	private static func presentDefaultAlert(title: String, message: String, actions: [UIAlertAction], style: UIAlertController.Style, withCancel: Bool) {

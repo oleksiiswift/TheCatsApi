@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol CategoryDelegate {
+	func didSelectedPremiumContent(at cell: CategoryTableViewCell)
+}
+
 class CategoryTableViewCell: UITableViewCell {
 	
 	@IBOutlet weak var imageContainerReuseShadowView: ReuseShadowView!
@@ -17,6 +21,8 @@ class CategoryTableViewCell: UITableViewCell {
 	@IBOutlet weak var titleTextLabel: UILabel!
 	@IBOutlet weak var subtitleTextLabel: UILabel!
 	@IBOutlet weak var paidButton: UIButton!
+	
+	public var delegate: CategoryDelegate?
 	
 	lazy var dimmerView = UIView()
 	
@@ -38,7 +44,7 @@ class CategoryTableViewCell: UITableViewCell {
 	}
 	
 	@IBAction func didTapPaidActionButton(_ sender: Any) {
-		
+		delegate?.didSelectedPremiumContent(at: self)
 	}
 }
 

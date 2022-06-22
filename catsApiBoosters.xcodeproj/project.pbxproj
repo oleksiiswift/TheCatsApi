@@ -171,6 +171,7 @@
 		97ABB4972861BE6500F05732 /* UIHelper */ = {
 			isa = PBXGroup;
 			children = (
+				9714587E2863127200138E2D /* PreviewCarouselFlowLayout.swift */,
 				97ABB4952861BC8200F05732 /* VisualEffectBlurView.swift */,
 				97ABB4982861BE8500F05732 /* ActivityIndicatorView.swift */,
 				97ABB4A32861DA1000F05732 /* ReuseShadowView.swift */,
@@ -338,7 +339,6 @@
 				97B583F32861330E00144DB7 /* UIPresenter.swift */,
 				97ABB4972861BE6500F05732 /* UIHelper */,
 				97ABB4B1286223C800F05732 /* ButtonType.swift */,
-				9714587E2863127200138E2D /* PreviewCarouselFlowLayout.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
