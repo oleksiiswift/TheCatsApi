@@ -26,10 +26,9 @@ class CategoriesFactsViewController: UIViewController {
 		setupUI()
 		setupCollectionView()
     }
-
+		
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
-		
 		
 		self.navigationItem.largeTitleDisplayMode = .always
 		self.clearStoredCache()
@@ -113,6 +112,6 @@ extension CategoriesFactsViewController {
 	
 	private func setupNavigation() {
 		self.navigationItem.largeTitleDisplayMode = .never
-		self.navigationItem.title = self.navigationTitle
+		self.navigationItem.title = self.navigationTitle?.removingEmoji
 	}
 }

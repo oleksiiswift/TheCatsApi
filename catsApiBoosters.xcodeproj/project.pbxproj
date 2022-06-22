@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6039D615B9B03907F84025AE /* Pods_catsApiBoosters.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EF4B4E22E5E950D98D50BED /* Pods_catsApiBoosters.framework */; };
 		9714587F2863127200138E2D /* PreviewCarouselFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9714587E2863127200138E2D /* PreviewCarouselFlowLayout.swift */; };
+		9714588328638A3C00138E2D /* String+Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9714588228638A3C00138E2D /* String+Emoji.swift */; };
 		9784E219286111DB0059773F /* CategoriesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9784E218286111DB0059773F /* CategoriesListViewController.swift */; };
 		9784E21B286111F60059773F /* CategoriesFactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9784E21A286111F60059773F /* CategoriesFactsViewController.swift */; };
 		9784E21F2861128F0059773F /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9784E21D2861128F0059773F /* CategoryTableViewCell.swift */; };
@@ -59,6 +60,7 @@
 		2EF4B4E22E5E950D98D50BED /* Pods_catsApiBoosters.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_catsApiBoosters.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		72DF2235BD8F74D62AF6B2E8 /* Pods-catsApiBoosters.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-catsApiBoosters.debug.xcconfig"; path = "Target Support Files/Pods-catsApiBoosters/Pods-catsApiBoosters.debug.xcconfig"; sourceTree = "<group>"; };
 		9714587E2863127200138E2D /* PreviewCarouselFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCarouselFlowLayout.swift; sourceTree = "<group>"; };
+		9714588228638A3C00138E2D /* String+Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Emoji.swift"; sourceTree = "<group>"; };
 		9784E218286111DB0059773F /* CategoriesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesListViewController.swift; sourceTree = "<group>"; };
 		9784E21A286111F60059773F /* CategoriesFactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesFactsViewController.swift; sourceTree = "<group>"; };
 		9784E21D2861128F0059773F /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				97ABB4BC2862574B00F05732 /* Int */,
 				97ABB4BB2862573900F05732 /* TimeInterval+String */,
 				97ABB4BF28625F6D00F05732 /* UIFont+MonoSpace.swift */,
+				9714588228638A3C00138E2D /* String+Emoji.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -561,6 +564,7 @@
 				97ABB4992861BE8500F05732 /* ActivityIndicatorView.swift in Sources */,
 				97ABB4A22861D9BD00F05732 /* CALayer.swift in Sources */,
 				97F83A1E2860972C0049F1FE /* CFileManager.swift in Sources */,
+				9714588328638A3C00138E2D /* String+Emoji.swift in Sources */,
 				97ABB4B82862428900F05732 /* Int+Radii.swift in Sources */,
 				97B583EC2861316900144DB7 /* Utils.swift in Sources */,
 				97ABB4BA2862438E00F05732 /* TimeInterval.swift in Sources */,

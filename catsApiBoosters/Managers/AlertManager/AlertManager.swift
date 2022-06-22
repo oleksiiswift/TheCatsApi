@@ -23,18 +23,18 @@ enum AlertType {
 	var alertDescription: AlertDescription {
 		switch self {
 			case .showAdd:
-				return .init(title: "Watch Ad to continue",
-							 description: "By tapping \(ButtonType.add.rawValue) your agree to watch advertisement",
+				return .init(title: "Watch ads to continue!",
+							 description: "By tapping \"\(ButtonType.add.rawValue)\" agree to watch advertisement",
 							 action: Buttons.getButtonTitle(of: .add),
 							 cancel: Buttons.getButtonTitle(of: .cancel))
 			case .emptyContent:
-				return .init(title: "Coming Soon",
-							 description: "Content will be availibe later!",
+				return .init(title: "Coming Soon!",
+							 description: "Content will be available later!",
 							 action: Buttons.getButtonTitle(of: .ok),
 							 cancel: "")
 			case .cancelAdd:
-				return .init(title: "Cancel watch add",
-							 description: "by skipping add, category will not recieve",
+				return .init(title: "Cancel ads?",
+							 description: "By skipping ads, category will not show.",
 							 action: Buttons.getButtonTitle(of: .skip),
 							 cancel: Buttons.getButtonTitle(of: .cancel))
 			case .decodingError:
@@ -44,12 +44,12 @@ enum AlertType {
 							 cancel: "")
 			case .badRequestUrl:
 				return .init(title: "Error!",
-							 description: "Bad Bad Request Url",
+							 description: "Bad Request Url",
 							 action: Buttons.getButtonTitle(of: .ok),
 							 cancel: "")
 			case .badServerResponse:
 				return .init(title: "Error!",
-							 description: "Bad Server Error",
+							 description: "Server Error",
 							 action: Buttons.getButtonTitle(of: .ok),
 							 cancel: "")
 			case .unsupportedURL:

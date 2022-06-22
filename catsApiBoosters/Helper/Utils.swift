@@ -29,6 +29,13 @@ class Utils {
 			.first?.windows.filter {$0.isKeyWindow}.first
 	}
 	
+	static func loading() -> UIWindow? {
+		return UIApplication.shared.connectedScenes
+			.filter {$0.activationState == .foregroundActive}
+			.compactMap {$0 as? UIWindowScene}
+			.first?.windows.filter {$0.tag == 634}.first
+	}
+	
 	static let mainScreen: UIScreen = .main
 	
 	static let screenBounds: CGRect = mainScreen.bounds
@@ -45,8 +52,11 @@ class Utils {
 extension Utils {
 	
 	public static func topMostViewController() -> UIViewController? {
-		guard let rootController = keyWindow()?.rootViewController else { return nil }
-		return topMostViewController(for: rootController)
+		if let loadingController = loading()?.rootViewController {
+			return topMostViewController(for: loadingController)
+		} else if let rootController = keyWindow()?.rootViewController {
+			return topMostViewController(for: rootController)
+		} else { return nil }
 	}
 	
 	private static func topMostViewController(for controller: UIViewController) -> UIViewController {
