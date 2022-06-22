@@ -12,6 +12,7 @@ enum ButtonType {
 	case ok
 	case add
 	case skip
+	case share
 	
 	var rawValue: String {
 		switch self {
@@ -23,6 +24,8 @@ enum ButtonType {
 				return "Show Ad"
 			case .skip:
 				return "Skip"
+			case .share:
+				return "Share"
 		}
 	}
 }

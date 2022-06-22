@@ -14,7 +14,7 @@ import UIKit
 	
 	public var handleForward: ((_ cell: CategoryFactCollectionViewCell) -> Void) = { _ in}
 	public var handleBackward: ((_ cell: CategoryFactCollectionViewCell) -> Void) = { _ in}
-	
+
 	init(contentViewModel: CategoriesFactsViewModel) {
 		self.contentViewModel = contentViewModel
 	}
@@ -77,5 +77,67 @@ extension CategoriesFactsDataSource: UICollectionViewDataSource, UICollectionVie
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.Identifiers.Cells.fact, for: indexPath) as! CategoryFactCollectionViewCell
 		self.configure(cell: cell, at: indexPath)
 		return cell
+	}
+	
+	
+	func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+		
+		let content = self.contentViewModel.getCategory(at: indexPath)
+		let imageCacheID = content.imageChacheID
+		let identifier = IndexPath(row: indexPath.row, section: indexPath.section) as NSCopying
+		
+		if let image = CFileManager().getImageFromCache(with: imageCacheID) {
+			return UIContextMenuConfiguration(identifier: identifier) {
+				return ImagePreviewViewController(item: image)
+			} actionProvider: { _ in
+				return self.createCellContextMenu(for: content, at: indexPath)
+			}
+		}
+		return nil
+	}
+}
+
+extension CategoriesFactsDataSource {
+	
+	func collectionView(_ collectionView: UICollectionView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+		
+		guard let indexPath = configuration.identifier as? IndexPath, let cell = collectionView.cellForItem(at: indexPath) as? CategoryFactCollectionViewCell else { return nil}
+		
+		let params = UIPreviewParameters()
+		params.backgroundColor = .clear
+		let targetPrteview = UITargetedPreview(view: cell.contentImageView, parameters: params)
+		return targetPrteview
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+		
+		guard let indexPath = configuration.identifier as? IndexPath, let cell = collectionView.cellForItem(at: indexPath) as? CategoryFactCollectionViewCell else { return nil}
+		let targetPrteview = UITargetedPreview(view: cell.contentImageView)
+		targetPrteview.parameters.backgroundColor = .clear
+		return targetPrteview
+	}
+}
+
+extension CategoriesFactsDataSource {
+	
+	private func createCellContextMenu(for model: AnimalContentModel, at indexPath: IndexPath) -> UIMenu {
+		
+		let shareActionImage = Images.Buttons.share
+	
+		let shareAction = UIAction(title: Buttons.getButtonTitle(of: .share), image: shareActionImage) { _ in
+			self.didTapShareFact(model: model)
+		}
+		
+		return UIMenu(title: "", children: [shareAction])
+	}
+	
+	private func didTapShareFact(model: AnimalContentModel) {
+		
+		let image = CFileManager().getImageFromCache(with: model.imageChacheID)
+		let fact = model.fact
+		
+		ShareManager.shared.share(factString: fact, image: image) {
+			debugPrint("done")
+		}
 	}
 }
