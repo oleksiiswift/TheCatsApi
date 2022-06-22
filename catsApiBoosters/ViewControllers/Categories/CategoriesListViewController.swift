@@ -101,9 +101,10 @@ extension CategoriesListViewController: AdvertisementListener {
 	func advertisementDidShow() {
 	
 		UIPresenter.closePresentedWindow(of: .advertisement)
-		
-		guard let model = self.selectedCategory else { return }
-		self.showContent(model)
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
+			guard let model = self.selectedCategory else { return }
+			self.showContent(model)
+		}
 	}
 }
 
