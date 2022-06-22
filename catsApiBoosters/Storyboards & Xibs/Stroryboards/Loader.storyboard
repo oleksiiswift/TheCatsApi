@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Loader View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="LoaderViewController" id="Y6W-OH-hqX" customClass="LoaderViewController" customModule="catsApiBoosters" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="58" y="117"/>
+        </scene>
+        <!--Advertisement View Controller-->
+        <scene sceneID="tNy-Bq-QgA">
+            <objects>
+                <viewController storyboardIdentifier="AdvertisementViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fOI-Us-Iq0" customClass="AdvertisementViewController" customModule="catsApiBoosters" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RuR-5C-IBW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uEF-ED-15P">
+                                <rect key="frame" x="354" y="44" width="50" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hgi-zV-DAn">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <connections>
+                                            <action selector="didTapCancelAdvertisementActionButton:" destination="fOI-Us-Iq0" eventType="touchUpInside" id="aiB-b7-pIa"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="hgi-zV-DAn" firstAttribute="top" secondItem="uEF-ED-15P" secondAttribute="top" id="LrU-GL-12c"/>
+                                    <constraint firstAttribute="bottom" secondItem="hgi-zV-DAn" secondAttribute="bottom" id="MVL-yh-Bgb"/>
+                                    <constraint firstItem="hgi-zV-DAn" firstAttribute="leading" secondItem="uEF-ED-15P" secondAttribute="leading" id="MqV-0Y-FhH"/>
+                                    <constraint firstAttribute="height" constant="50" id="N2v-2G-Otb"/>
+                                    <constraint firstAttribute="width" constant="50" id="SeW-vU-wBV"/>
+                                    <constraint firstAttribute="trailing" secondItem="hgi-zV-DAn" secondAttribute="trailing" id="dBc-xr-xah"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="E5K-4B-3JS"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="E5K-4B-3JS" firstAttribute="trailing" secondItem="uEF-ED-15P" secondAttribute="trailing" constant="10" id="W2d-Ik-kZp"/>
+                            <constraint firstItem="uEF-ED-15P" firstAttribute="top" secondItem="RuR-5C-IBW" secondAttribute="top" constant="44" id="wPM-Kf-xpR"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cancelAdvertisementButton" destination="hgi-zV-DAn" id="jye-pH-d8B"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZcR-fj-SlF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1133" y="117"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
