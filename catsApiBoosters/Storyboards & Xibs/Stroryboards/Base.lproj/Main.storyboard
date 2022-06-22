@@ -43,6 +43,7 @@
         <!--Categories Facts View Controller-->
         <scene sceneID="jeD-Ui-8sS">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZRL-uP-eg8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="CategoriesFactsViewController" id="vQl-j8-bEF" customClass="CategoriesFactsViewController" customModule="catsApiBoosters" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uNz-vc-Mtf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -82,7 +83,6 @@
                         <outlet property="collectionView" destination="LQx-Lv-7iF" id="hoi-hb-Mgq"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZRL-uP-eg8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1903" y="117"/>
         </scene>

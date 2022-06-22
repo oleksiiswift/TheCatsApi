@@ -26,10 +26,10 @@ class CategoriesFactsViewController: UIViewController {
 		setupUI()
 		setupCollectionView()
     }
-
+		
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
-	
+		
 		self.navigationItem.largeTitleDisplayMode = .always
 		self.clearStoredCache()
 	}
@@ -78,6 +78,7 @@ extension CategoriesFactsViewController {
 	private func viewModelSetup() {
 		
 		if let content = content {
+			
 			self.contentViewModel = CategoriesFactsViewModel(categoryContent: content)
 			self.contentDataSource = CategoriesFactsDataSource(contentViewModel: self.contentViewModel)
 			self.handleScroolingItems()
@@ -85,17 +86,14 @@ extension CategoriesFactsViewController {
 			self.collectionView.dataSource = self.contentDataSource
 			self.collectionView.reloadData()
 		} else {
-			debugPrint("no data")
+			AlertManager.showAlert(of: .contentIsEmpty)
 		}
 	}
 }
 
 extension CategoriesFactsViewController {
 	
-	private func setupUI() {
-		
-		self.navigationItem.title = self.navigationTitle
-	}
+	private func setupUI() {}
 	
 	private func setupCollectionView() {
 		
@@ -114,5 +112,6 @@ extension CategoriesFactsViewController {
 	
 	private func setupNavigation() {
 		self.navigationItem.largeTitleDisplayMode = .never
+		self.navigationItem.title = self.navigationTitle?.removingEmoji
 	}
 }

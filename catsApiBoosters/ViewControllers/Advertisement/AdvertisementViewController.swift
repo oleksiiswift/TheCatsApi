@@ -29,12 +29,7 @@ class AdvertisementViewController: UIViewController {
 		progressSetup()
 		timerSetup()
 	}
-	
-	override func viewDidAppear(_ animated: Bool) {
-		super.viewDidAppear(animated)
 		
-	}
-	
 	@IBAction func didTapCancelAdvertisementActionButton(_ sender: Any) {
 		AdvertisementMediator.instance.advertisementTryCancel()
 	}

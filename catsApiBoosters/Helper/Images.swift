@@ -15,6 +15,7 @@ struct Images {
 		static let locker = UIImage(systemName: "lock.fill")
 		static let arrowBackward = UIImage(systemName: "arrow.left.circle")
 		static let arrowForward = UIImage(systemName: "arrow.forward.circle")
+		static let camera = UIImage(systemName: "camera.fill")
 	}
 }
 

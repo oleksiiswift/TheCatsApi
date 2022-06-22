@@ -17,6 +17,7 @@ class UIPresenter {
 		 let navigationController = UINavigationController.init(rootViewController: viewController)
 		
 		 Utils.sceneDelegate.presenterWindow = UIWindow(windowScene: scene)
+		 Utils.sceneDelegate.presenterWindow?.tag = 634
 		 Utils.sceneDelegate.presenterWindow?.windowLevel = .statusBar - 1
 		 Utils.sceneDelegate.presenterWindow?.rootViewController = navigationController
 		 Utils.sceneDelegate.presenterWindow?.makeKeyAndVisible()

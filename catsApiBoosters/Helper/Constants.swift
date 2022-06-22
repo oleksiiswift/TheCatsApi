@@ -11,12 +11,12 @@ struct Constants {
 	
 	struct Links {
 	
-		static let apiLink = "https://drive.google.com/uc?export=download&id=1Fs6RwY3a3ZNWDyXDbU-BgcfkN4oSJak4"
-//		static let apiLink = "https://drive.google.com/uc?export=download&id=12L7OflAsIxPOF47ssRdKyjXoWbUrq4V5"
+//		static let apiLink = "https://drive.google.com/uc?export=download&id=1Fs6RwY3a3ZNWDyXDbU-BgcfkN4oSJak4"
+		static let apiLink = "https://drive.google.com/uc?export=download&id=12L7OflAsIxPOF47ssRdKyjXoWbUrq4V5"
 	}
 	
 	struct Advertisement {
-		static let advertisementDuration: TimeInterval = 10
+		static let advertisementDuration: TimeInterval = 5
 	}
 	
 	struct Identifiers {

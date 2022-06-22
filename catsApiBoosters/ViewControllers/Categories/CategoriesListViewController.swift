@@ -16,7 +16,7 @@ class CategoriesListViewController: UIViewController {
 	private var categoriesDataSource: CategoriesDataSource!
 	
 	private var persistantManager = PersistentManager.instance
-	private var selectedContent: [AnimalContentModel]?
+	private var selectedCategory: AnimalCategoryModel?
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +38,7 @@ extension CategoriesListViewController {
 		if self.categoriesViewModel.categories.count > 0 {
 			UIPresenter.closePresentedWindow(of: .loader)
 		} else {
-			debugPrint("show empty alert view")
+			AlertManager.showAlert(of: .contentIsEmpty)
 		}
 	}
 }
@@ -47,24 +47,40 @@ extension CategoriesListViewController {
 	
 	private func handleSelectContent() {
 		
-		self.categoriesDataSource.handlePaidSelectCatrgory = { selectedContent in
+		self.categoriesDataSource.handlePaidSelectCatrgory = { selectedCategory in
 			AlertManager.showAlert(of: .showAdd) {
-				self.selectedContent = selectedContent
+				self.selectedCategory = selectedCategory
 				UIPresenter.showViewController(of: .advertisement)
 			}
 		}
 		
-		self.categoriesDataSource.handleSelectCategory = { selectedContent in
-			self.showContent(selectedContent)
+		self.categoriesDataSource.handleSelectCategory = { selectedCategory in
+			self.showContent(selectedCategory)
+		}
+		
+		self.categoriesDataSource.handleTryPurchsePremium = { cell in
+			
+			guard let indexPath = self.tableView.indexPath(for: cell) else { return }
+			
+			let model = self.categoriesViewModel.getCategory(at: indexPath)
+			
+			if model.content.isEmpty {
+				AlertManager.showAlert(of: .emptyContent, completionHandler: nil)
+			} else {
+				AlertManager.showAlert(of: .showAdd) {
+					self.selectedCategory = model
+					UIPresenter.showViewController(of: .advertisement)
+				}
+			}
 		}
 	}
 	
-	private func showContent(_ content: [AnimalContentModel]) {
+	private func showContent(_ model: AnimalCategoryModel) {
 		
 		let storyboard = UIStoryboard(name: Constants.Identifiers.Stroryboards.main, bundle: nil)
 		let viewConroller = storyboard.instantiateViewController(withIdentifier: Constants.Identifiers.ViewControllers.categoriesFacts) as! CategoriesFactsViewController
-		viewConroller.content = content
-		viewConroller.navigationTitle = "helo"
+		viewConroller.content = Array(model.content)
+		viewConroller.navigationTitle = model.title ?? ""
 		self.navigationController?.pushViewController(viewConroller, animated: true)
 	}
 }
@@ -72,12 +88,12 @@ extension CategoriesListViewController {
 extension CategoriesListViewController: AdvertisementListener {
 	
 	func advertisementDidCancel() {
-		self.selectedContent = nil
+		self.selectedCategory = nil
 	}
 	
 	func advertisementTryCancel() {
 		AlertManager.showAlert(of: .cancelAdd) {
-			self.selectedContent = nil
+			self.selectedCategory = nil
 			UIPresenter.closePresentedWindow(of: .advertisement)
 		}
 	}
@@ -86,8 +102,8 @@ extension CategoriesListViewController: AdvertisementListener {
 	
 		UIPresenter.closePresentedWindow(of: .advertisement)
 		
-		guard let content = self.selectedContent else { return }
-		self.showContent(content)
+		guard let model = self.selectedCategory else { return }
+		self.showContent(model)
 	}
 }
 

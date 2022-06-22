@@ -9,6 +9,10 @@ import Foundation
 
 struct ErrorHandler {
 	
+	enum DecodeError: Error {
+		case decodingError
+	}
+	
 	enum NetworkingError: Error {
 		case badRequestUrl
 		case badServerResponse
@@ -24,9 +28,19 @@ struct ErrorHandler {
 
 extension ErrorHandler {
 	
-	
-	public static func handleError(of errorForKey: Error) {
+	public static func handleError(of errorForKey: Error, description: String = "") {
 		
-		debugPrint(errorForKey)
+		switch errorForKey {
+			case DecodeError.decodingError:
+				AlertManager.showAlert(of: .decodingError, optionalDescription: description)
+			case NetworkingError.badServerResponse:
+				AlertManager.showAlert(of: .badServerResponse)
+			case NetworkingError.badRequestUrl:
+				AlertManager.showAlert(of: .badRequestUrl)
+			case NetworkingError.unsupportedURL:
+				AlertManager.showAlert(of: .unsupportedURL)
+			default:
+				return
+		}
 	}
 }

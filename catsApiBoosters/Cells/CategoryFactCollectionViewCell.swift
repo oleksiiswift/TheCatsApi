@@ -29,6 +29,7 @@ class CategoryFactCollectionViewCell: UICollectionViewCell {
 	@IBOutlet weak var backwardButtom: UIButton!
 	@IBOutlet weak var factTextLabel: UILabel!
 	
+	private let blankImage = UIImageView()
 	private lazy var activityIndicatorView = UIActivityIndicatorView()
 	public var delegate: CategoryFactCellDelegate?
 	
@@ -36,12 +37,13 @@ class CategoryFactCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         
 		setupUI()
-
+		setupBlankImage()
     }
 	
 	override func prepareForReuse() {
 		super.prepareForReuse()
 		
+		blankImage.isHidden = true
 		contentImageView.image = nil
 	}
 	
@@ -65,10 +67,25 @@ extension CategoryFactCollectionViewCell {
 	
 	public func configureCell(with image: UIImage?) {
 		
-		if let image = image {
 			setIndicatorHide()
+		if let image = image {
 			contentImageView.image = image
+		} else {
+			blankImage.isHidden = false
 		}
+	}
+	
+	private func setupBlankImage() {
+		
+		blankImage.isHidden = true
+		blankImage.tintColor = Theme.loadingActivityIndicatorColor
+		blankImage.translatesAutoresizingMaskIntoConstraints = false
+		blankImage.heightAnchor.constraint(equalToConstant: 40).isActive = true
+		blankImage.widthAnchor.constraint(equalToConstant: 40).isActive = true
+		blankImage.centerYAnchor.constraint(equalTo: imageContainerView.centerYAnchor).isActive = true
+		blankImage.centerXAnchor.constraint(equalTo: imageContainerView.centerXAnchor).isActive = true
+		blankImage.image = Images.Buttons.camera
+		blankImage.contentMode = .scaleAspectFit
 	}
 }
 
@@ -91,6 +108,8 @@ extension CategoryFactCollectionViewCell {
 	
 	private func setupUI() {
 	
+		imageContainerView.addSubview(blankImage)
+		
 		factTextLabel.font = .systemFont(ofSize: 12, weight: .medium)
 		factTextLabel.textColor = Theme.subTitleTextColor
 		factTextLabel.sizeToFit()

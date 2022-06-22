@@ -7,8 +7,6 @@
 
 import UIKit
 
-//
-
 extension UIFont {
 	public func withMonospacedNumbers() -> Self {
 		let monospacedFeature: [UIFontDescriptor.FeatureKey: Any]

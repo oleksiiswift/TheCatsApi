@@ -11,8 +11,9 @@ import UIKit
 @MainActor class CategoriesDataSource: NSObject {
 	
 	public var categoriesViewModel: CategoriesViewModel
-	public var handleSelectCategory: (([AnimalContentModel]) -> Void) = { _ in }
-	public var handlePaidSelectCatrgory: (([AnimalContentModel]) -> Void) = { _ in }
+	public var handleSelectCategory: ((AnimalCategoryModel) -> Void) = { _ in }
+	public var handlePaidSelectCatrgory: ((AnimalCategoryModel) -> Void) = { _ in }
+	public var handleTryPurchsePremium: ((CategoryTableViewCell) -> Void) = { _ in}
 	
 	init(categoryViewModel: CategoriesViewModel) {
 		self.categoriesViewModel = categoryViewModel
@@ -33,7 +34,15 @@ extension CategoriesDataSource {
 				}
 			}
 		}
+		cell.delegate = self
 		cell.configureCell(with: model)
+	}
+}
+
+extension CategoriesDataSource: CategoryDelegate {
+	
+	func didSelectedPremiumContent(at cell: CategoryTableViewCell) {
+		self.handleTryPurchsePremium(cell)
 	}
 }
 
@@ -66,9 +75,9 @@ extension CategoriesDataSource: UITableViewDelegate, UITableViewDataSource {
 		} else {
 			switch model.status {
 				case .free:
-					self.handleSelectCategory(Array(model.content))
+					self.handleSelectCategory(model)
 				case .paid:
-					self.handlePaidSelectCatrgory(Array(model.content))
+					self.handlePaidSelectCatrgory(model)
 				case .unknown:
 					return
 			}

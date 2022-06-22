@@ -45,7 +45,6 @@ extension AppDelegate {
 			
 			if !animalsData.isEmpty {
 				PersistentManager.instance.saveObjects(objects: animalsData) { saved in
-					debugPrint("saved completed")
 					NotificationCenter.default.post(name: .dateBaseDidUpdate, object: nil)
 				}
 			}
